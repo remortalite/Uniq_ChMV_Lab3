@@ -163,9 +163,9 @@ public class RomanNumber : ICloneable, IComparable
     {
         if (obj == null)
             throw new RomanNumberException("obj should not be null!");
-        ushort number2 = RomanToNumber(obj.ToString());
-        if (number2 > number)
-            return 1;
-        return 0;
+        if (obj is RomanNumber num)
+            return number.CompareTo(RomanToNumber(num.ToString()));
+        else
+            throw new RomanNumberException("Wrong object");
     }
 }
