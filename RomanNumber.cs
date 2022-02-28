@@ -105,7 +105,7 @@ public class RomanNumber : ICloneable, IComparable
         number_string = NumberToRoman(number);
     }
 
-    public static RomanNumber Add(RomanNumber? n1, RomanNumber? n2)
+    public static RomanNumber operator +(RomanNumber? n1, RomanNumber? n2)
     {
         ushort res;
         if (n1 == null || n2 == null)
@@ -116,7 +116,7 @@ public class RomanNumber : ICloneable, IComparable
         return new RomanNumber(res);
     }
 
-    public static RomanNumber Sub(RomanNumber? n1, RomanNumber? n2)
+    public static RomanNumber operator -(RomanNumber? n1, RomanNumber? n2)
     {
         ushort res;
         if (n1 == null || n2 == null)
@@ -127,7 +127,7 @@ public class RomanNumber : ICloneable, IComparable
         return new RomanNumber(res);
     }
 
-    public static RomanNumber Mul(RomanNumber? n1, RomanNumber? n2)
+    public static RomanNumber operator *(RomanNumber? n1, RomanNumber? n2)
     {
         ushort res;
         if (n1 == null || n2 == null)
@@ -138,7 +138,7 @@ public class RomanNumber : ICloneable, IComparable
         return new RomanNumber(res);
     }
 
-    public static RomanNumber Div(RomanNumber? n1, RomanNumber? n2)
+    public static RomanNumber operator /(RomanNumber? n1, RomanNumber? n2)
     {
         ushort res;
         if (n1 == null || n2 == null)
