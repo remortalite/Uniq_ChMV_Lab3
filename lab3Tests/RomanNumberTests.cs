@@ -54,12 +54,36 @@ namespace Tests
 
         [TestMethod()]
         [DataRow(5, null)]
-        [DataRow(5, new int[] {0,1})]
+        [DataRow(5, new int[] { 0, 1 })]
         [ExpectedException(typeof(RomanNumberException))]
         public void CompareToTest_exception(int num, object obj)
         {
             RomanNumber number = new RomanNumber((ushort)num);
             number.CompareTo(obj);
+        }
+
+        [TestMethod()]
+        [DataRow(5, 10, 15)]
+        [DataRow(1, 1, 2)]
+        [DataRow(65534, 1, 65535)]
+        public void AddTest(int num1, int num2, int result)
+        {
+            RomanNumber number1 = new RomanNumber((ushort)num1);
+            RomanNumber number2 = new RomanNumber((ushort)num2);
+            RomanNumber expected = new RomanNumber((ushort)result);
+            RomanNumber actual = number1 + number2;
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+        }
+
+        [TestMethod()]
+        [DataRow(65535, 1)]
+        [DataRow(500000, 500000)]
+        [ExpectedException(typeof(System.OverflowException))]
+        public void AddTest_exception(int num1, int num2)
+        {
+            RomanNumber number1 = new RomanNumber((ushort)num1);
+            RomanNumber number2 = new RomanNumber((ushort)num2);
+            RomanNumber actual = number1 + number2;
         }
     }
 }

@@ -112,7 +112,10 @@ public class RomanNumber : ICloneable, IComparable
             throw new RomanNumberException("Parameter should not be null");
         ushort number1 = RomanToNumber(n1.ToString());
         ushort number2 = RomanToNumber(n2.ToString());
-        res = (ushort)(number1 + number2);
+        checked
+        {
+            res = (ushort)(number1 + number2);
+        }
         return new RomanNumber(res);
     }
 
@@ -136,7 +139,10 @@ public class RomanNumber : ICloneable, IComparable
             throw new RomanNumberException("Parameter should not be null");
         ushort number1 = RomanToNumber(n1.ToString());
         ushort number2 = RomanToNumber(n2.ToString());
-        res = (ushort)(number1 * number2);
+        checked
+        {
+            res = (ushort)(number1 * number2);
+        }        
         return new RomanNumber(res);
     }
 
