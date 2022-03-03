@@ -19,6 +19,15 @@ namespace Tests
         }
 
         [TestMethod()]
+        [DataRow((ushort)1)]
+        [DataRow((ushort)5)]
+        [DataRow((ushort)65535)]
+        public void RomanNumberTest(ushort n)
+        {
+            RomanNumber number = new RomanNumber(n);
+        }
+
+        [TestMethod()]
         [DataRow((ushort)5, "V")]
         [DataRow((ushort)39, "XXXIX")]
         [DataRow((ushort)498, "CDXCVIII")]
