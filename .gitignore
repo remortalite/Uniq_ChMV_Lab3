@@ -1,4 +1,8 @@
 obj/
 bin/
+.vs/
+TestResults/
 
 *.swp
+
+
