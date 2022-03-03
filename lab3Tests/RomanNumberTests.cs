@@ -11,27 +11,55 @@ namespace Tests
     public class RomanNumberTests
     {
         [TestMethod()]
-        public void RomanNumberTest()
+        [DataRow((ushort)0)]
+        [ExpectedException(typeof(RomanNumberException))]
+        public void RomanNumberTest_ValueZero(ushort n)
         {
-            Assert.Fail();
+            RomanNumber number = new RomanNumber(n);
         }
 
         [TestMethod()]
-        public void ToStringTest()
+        [DataRow((ushort)5, "V")]
+        [DataRow((ushort)39, "XXXIX")]
+        [DataRow((ushort)498, "CDXCVIII")]
+        [DataRow((ushort)3789, "MMMDCCLXXXIX")]
+        public void ToStringTest(ushort number, string expected)
         {
-            Assert.Fail();
+            string actual = new RomanNumber(number).ToString();
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod()]
-        public void CloneTest()
+        [DataRow((ushort)5, "V")]
+        [DataRow((ushort)39, "XXXIX")]
+        [DataRow((ushort)498, "CDXCVIII")]
+        [DataRow((ushort)3789, "MMMDCCLXXXIX")]
+        public void CloneTest(ushort number, string expected)
         {
-            Assert.Fail();
+            RomanNumber roman = new RomanNumber(number);
+            RomanNumber clone = (RomanNumber)roman.Clone();
+            Assert.AreEqual(expected, clone.ToString());
         }
 
         [TestMethod()]
-        public void CompareToTest()
+        [DataRow(5, 10, true)]
+        [DataRow(10, 10, false)]
+        [DataRow(100, 10, false)]
+        public void CompareToTest(int n1, int n2, bool expected)
         {
-            Assert.Fail();
+            RomanNumber number1 = new RomanNumber((ushort)n1);
+            RomanNumber number2 = new RomanNumber((ushort)n2);
+            Assert.AreEqual(number1.CompareTo(number2) < 0, expected);
+        }
+
+        [TestMethod()]
+        [DataRow(5, null)]
+        [DataRow(5, new int[] {0,1})]
+        [ExpectedException(typeof(RomanNumberException))]
+        public void CompareToTest_exception(int num, object obj)
+        {
+            RomanNumber number = new RomanNumber((ushort)num);
+            number.CompareTo(obj);
         }
     }
 }
