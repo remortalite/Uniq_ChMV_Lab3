@@ -123,6 +123,8 @@ public class RomanNumber : ICloneable, IComparable
             throw new RomanNumberException("Parameter should not be null");
         ushort number1 = RomanToNumber(n1.ToString());
         ushort number2 = RomanToNumber(n2.ToString());
+        if (number1 <= number2)
+            throw new RomanNumberException("First parameter should not be less than second");
         res = (ushort)(number1 - number2);
         return new RomanNumber(res);
     }
@@ -145,6 +147,8 @@ public class RomanNumber : ICloneable, IComparable
             throw new RomanNumberException("Parameter should not be null");
         ushort number1 = RomanToNumber(n1.ToString());
         ushort number2 = RomanToNumber(n2.ToString());
+        if (number1 < number2)
+            throw new RomanNumberException("First parameter should not be less than second");
         res = (ushort)(number1 / number2);
         return new RomanNumber(res);
     }
