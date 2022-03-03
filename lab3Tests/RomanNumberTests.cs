@@ -79,11 +79,144 @@ namespace Tests
         [DataRow(65535, 1)]
         [DataRow(500000, 500000)]
         [ExpectedException(typeof(System.OverflowException))]
+        public void AddTest_exceptionOverflow(int num1, int num2)
+        {
+            RomanNumber number1 = new RomanNumber((ushort)num1);
+            RomanNumber number2 = new RomanNumber((ushort)num2);
+            RomanNumber actual = number1 + number2;
+        }
+
+        [TestMethod()]
+        [DataRow(65535, null)]
+        [DataRow(null, 5)]
+        [DataRow(null, null)]
+        [ExpectedException(typeof(RomanNumberException))]
         public void AddTest_exception(int num1, int num2)
         {
             RomanNumber number1 = new RomanNumber((ushort)num1);
             RomanNumber number2 = new RomanNumber((ushort)num2);
             RomanNumber actual = number1 + number2;
+        }
+
+        [TestMethod()]
+        [DataRow(10, 6, 4)]
+        [DataRow(65535, 1, 65534)]
+        public void SubTest(int num1, int num2, int result)
+        {
+            RomanNumber number1 = new RomanNumber((ushort)num1);
+            RomanNumber number2 = new RomanNumber((ushort)num2);
+            RomanNumber expected = new RomanNumber((ushort)result);
+            RomanNumber actual = number1 - number2;
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+        }
+
+        [TestMethod()]
+        [DataRow(10, 10)]
+        [DataRow(10, 100)]
+        [ExpectedException(typeof(RomanNumberException))]
+        public void SubTest_exceptionLessZero(int num1, int num2)
+        {
+            RomanNumber number1 = new RomanNumber((ushort)num1);
+            RomanNumber number2 = new RomanNumber((ushort)num2);
+            RomanNumber actual = number1 - number2;
+        }
+
+        [TestMethod()]
+        [DataRow(65535, null)]
+        [DataRow(null, 5)]
+        [DataRow(null, null)]
+        [ExpectedException(typeof(RomanNumberException))]
+        public void SubTest_exceptionNull(int num1, int num2)
+        {
+            RomanNumber number1 = new RomanNumber((ushort)num1);
+            RomanNumber number2 = new RomanNumber((ushort)num2);
+            RomanNumber actual = number1 - number2;
+        }
+
+        [TestMethod()]
+        [DataRow(5, 10, 50)]
+        [DataRow(1, 1, 1)]
+        [DataRow(65534, 1, 65534)]
+        public void MulTest(int num1, int num2, int result)
+        {
+            RomanNumber number1 = new RomanNumber((ushort)num1);
+            RomanNumber number2 = new RomanNumber((ushort)num2);
+            RomanNumber expected = new RomanNumber((ushort)result);
+            RomanNumber actual = number1 * number2;
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+        }
+
+        [TestMethod()]
+        [DataRow(32000, 3)]
+        [DataRow(65534, 2)]
+        [ExpectedException(typeof(System.OverflowException))]
+        public void MulTest_exceptionOverflow(int num1, int num2)
+        {
+            RomanNumber number1 = new RomanNumber((ushort)num1);
+            RomanNumber number2 = new RomanNumber((ushort)num2);
+            RomanNumber actual = number1 * number2;
+        }
+
+        [TestMethod()]
+        [DataRow(65535, null)]
+        [DataRow(null, 5)]
+        [DataRow(null, null)]
+        [ExpectedException(typeof(RomanNumberException))]
+        public void MulTest_exception(int num1, int num2)
+        {
+            RomanNumber number1 = new RomanNumber((ushort)num1);
+            RomanNumber number2 = new RomanNumber((ushort)num2);
+            RomanNumber actual = number1 * number2;
+        }
+
+
+        [TestMethod()]
+        [DataRow(10, 5, 2)]
+        [DataRow(65535, 1, 65535)]
+        [DataRow(65535, 2, 32767)]
+        [DataRow(1, 1, 1)]
+        [DataRow(10, 10, 1)]
+        public void DivTest(int num1, int num2, int result)
+        {
+            RomanNumber number1 = new RomanNumber((ushort)num1);
+            RomanNumber number2 = new RomanNumber((ushort)num2);
+            RomanNumber expected = new RomanNumber((ushort)result);
+            RomanNumber actual = number1 / number2;
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+        }
+
+        [TestMethod()]
+        [DataRow(10, 0)]
+        [DataRow(65535, 0)]
+        [ExpectedException(typeof(RomanNumberException))]
+        public void DivTest_exceptionDivisonByZero(int num1, int num2)
+        {
+            RomanNumber number1 = new RomanNumber((ushort)num1);
+            RomanNumber number2 = new RomanNumber((ushort)num2);
+            RomanNumber actual = number1 / number2;
+        }
+
+        [TestMethod()]
+        [DataRow(10, 100)]
+        [DataRow(65534, 65535)]
+        [ExpectedException(typeof(RomanNumberException))]
+        public void DivTest_exceptionIncorrectFrac(int num1, int num2)
+        {
+            RomanNumber number1 = new RomanNumber((ushort)num1);
+            RomanNumber number2 = new RomanNumber((ushort)num2);
+            RomanNumber actual = number1 / number2;
+        }
+
+        [TestMethod()]
+        [DataRow(65535, null)]
+        [DataRow(null, 5)]
+        [DataRow(null, null)]
+        [ExpectedException(typeof(RomanNumberException))]
+        public void DivTest_exceptionNull(int num1, int num2)
+        {
+            RomanNumber number1 = new RomanNumber((ushort)num1);
+            RomanNumber number2 = new RomanNumber((ushort)num2);
+            RomanNumber actual = number1 / number2;
         }
     }
 }
